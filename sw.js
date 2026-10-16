@@ -1,5 +1,6 @@
+// Tickerbook service worker, version 1.1.0 (keep in step with VERSION in index.html)
 // Offline shell: cache the app files, serve them cache-first, refresh in the background.
-const CACHE = 'tickerbook-v1';
+const CACHE = 'tickerbook-1.1.0';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
